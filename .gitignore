@@ -1,1 +1,6 @@
 *.S
+*.dasm
+*.log
+xcelium.d/
+build.history/
+*.vcd
