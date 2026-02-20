@@ -1,12 +1,12 @@
 # TestRIG
 Framework for testing RISC-V processors with Random Instruction Generation.
 
--added xcelium with basic coverage for cva6
--build & compile cva6 with:
+- added xcelium with basic coverage for cva6
+- build & compile cva6 with:
   ```sh
   ./riscv-implementations/cva6-cheri-dv/testrig/xlm/testrig_xlm_build.sh
   ```
--run with 
-```sh
-./utils/scripts/runTestRIG.py -a sail -b cva6_cov -r rv64ixcheri --no-support-misaligned
-```
+- run with 
+  ```sh
+  ./utils/scripts/runTestRIG.py -a sail -b cva6_cov -r rv64ixcheri --no-support-misaligned
+  ```
