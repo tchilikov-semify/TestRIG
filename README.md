@@ -10,3 +10,7 @@ Framework for testing RISC-V processors with Random Instruction Generation.
   ```sh
   ./utils/scripts/runTestRIG.py -a sail -b cva6_cov -r rv64ixcheri --no-support-misaligned
   ```
+- top level tb for CVA6 found at
+  ```
+  ./riscv-implementations/cva6-cheri-dv/testrig/tb/cva6_testrig_tb_top.sv
+  ```
