@@ -49,4 +49,4 @@
 	url = https://github.com/Capabilities-Limited/cheri-cva6.git
 [submodule "riscv-implementations/cva6-cheri-dv"]
 	path = riscv-implementations/cva6-cheri-dv
-	url = git@github.com:tchilikov-semify/cva6-cheri-dv.git
+	url = git@github.com:lowRISC/cva6-cheri-dv.git
