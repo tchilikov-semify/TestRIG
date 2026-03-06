@@ -1,3 +1,9 @@
+# Setup TestRIG
+- Run this script to automatically setup the repo, subrepos and install dependecies on NixOS:
+  ```sh
+  ./testrig_install.sh
+  ```
+
 # TestRIG
 Framework for testing RISC-V processors with Random Instruction Generation.
 
@@ -6,7 +12,7 @@ Framework for testing RISC-V processors with Random Instruction Generation.
   ```sh
   ./riscv-implementations/cva6-cheri-dv/testrig/xlm/testrig_xlm_build.sh
   ```
-- run with 
+- run with
   ```sh
   ./utils/scripts/runTestRIG.py -a sail -b cva6_cov -r rv64ixcheri --no-support-misaligned
   ```

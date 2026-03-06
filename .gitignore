@@ -4,3 +4,4 @@
 xcelium.d/
 build.history/
 *.vcd
+shell.nix
