@@ -225,6 +225,8 @@ parser.add_argument('--no-shrink', action='count', default=0,
   help="Disable VEngine test case shrinking")
 parser.add_argument('--no-save', action='count', default=0,
   help="Don't ask to save files")
+parser.add_argument('--save-all', action='count', default=0,
+  help="Save all traces not just failures")
 parser.add_argument('--continue-on-fail', action='count', default=0,
   help="Continue when encountering a failure")
 parser.add_argument('--test-len', metavar='LEN', default=None, type=auto_int,
@@ -515,14 +517,11 @@ def spawn_rvfi_dii_server(name, port, log, isa_def):
     cmd = [args.path_to_cva6]
     # Port info
     cmd += ["-q", "cva6-rvfi-dii", "-w", str(port)]
-    cmd += ["-v", "cva6-trace.vcd"]
+    cmd += ["-f", "cva6-trace.fst"]
   ##############################################################################
   elif name == 'cva6_cov':
     env2["RVFI_DII_PORT"] = str(port)
     cmd = [args.path_to_cva6_cov]
-    # Port info
-    # cmd += ["-q", "cva6-rvfi-dii", "-w", str(port)]
-    # cmd += ["-v", "cva6-trace.vcd"]
   ##############################################################################
   elif name == 'manual':
     return None
@@ -537,6 +536,12 @@ def spawn_rvfi_dii_server(name, port, log, isa_def):
   print("running rvfi-dii server as: ", " ".join(cmd))
   p = sub.Popen(cmd, env=env2, stdin=None, stdout=use_log, stderr=use_log)
   print('spawned {:s} rvfi-dii server on port: {:d} ({})'.format(name, port, cmd))
+
+  # give xcelium some time to start
+  if(name == 'cva6_cov'):
+    import time
+    #time.sleep(5)
+
   return p
 
 #############################
@@ -590,6 +595,8 @@ def spawn_vengine(name, mport, iport, arch, log, more_args=[]):
       relaxed = False
     if args.no_save:
       cmd += ['--no-save']
+    if args.save_all:
+      cmd += ['--save-all']
     if args.continue_on_fail:
       cmd += ['--continue-on-fail']
     if args.test_len:
@@ -663,11 +670,11 @@ def main():
     for a in servA:
       if a != None:
         print("killing implementation A's rvfi-dii server")
-        a.kill()
+        a.terminate()
     for b in servB:
       if b != None:
         print("killing implementation B's rvfi-dii server")
-        b.kill()
+        b.terminate()
     for g in generator:
       if g != None:
         print("killing generator")
