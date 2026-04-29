@@ -174,7 +174,7 @@ parser.add_argument('--path-to-muntjac', metavar='PATH', type=str,
 parser.add_argument('--path-to-cva6', metavar='PATH', type=str,
   default=op.join(implementations_path, "cheri-cva6/corev_apu/tb/tb_testRig_cheri/work-ver/Variane_testharness_dii"))
 parser.add_argument('--path-to-cva6-coverage', metavar='PATH', type=str,
-  default=op.join(implementations_path, "cva6-cheri-dv/sim/testrig_xlm_run.sh"))
+  default=op.join(implementations_path, "cva6-cheri-dv/sim/"))
 parser.add_argument('--path-to-QCVEngine', metavar='PATH', type=str,
   default=op.join(vengines_path, "QuickCheckVEngine/bin/QCVEngine"),
   help="The PATH to the QCVEngine executable")
@@ -521,7 +521,7 @@ def spawn_rvfi_dii_server(name, port, log, isa_def):
   ##############################################################################
   elif name == 'cva6_coverage':
     env2["RVFI_DII_PORT"] = str(port)
-    cmd = [args.path_to_cva6_coverage]
+    cmd = ['make', '-C', args.path_to_cva6_coverage, 'run']
   ##############################################################################
   elif name == 'manual':
     return None
